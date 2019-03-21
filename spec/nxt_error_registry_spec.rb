@@ -20,6 +20,12 @@ RSpec.describe NxtErrorRegistry do
       let(:level_one) { test_class }
       let(:level_two) { test_class }
 
+      let(:registry) { NxtErrorRegistry::Registry.send(:new) }
+
+      before do
+        allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
+      end
+
       it 'creates a new error class' do
         expect {
           level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100'
@@ -50,7 +56,10 @@ RSpec.describe NxtErrorRegistry do
       let(:level_one) { test_class }
       let(:level_two) { test_class }
 
+      let(:registry) { NxtErrorRegistry::Registry.send(:new) }
+
       before do
+        allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
         level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100'
       end
 
@@ -65,7 +74,10 @@ RSpec.describe NxtErrorRegistry do
       context 'in the same namespace' do
         let(:level_one) { test_class }
 
+        let(:registry) { NxtErrorRegistry::Registry.send(:new) }
+
         before do
+          allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
           level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.101'
         end
 
@@ -80,7 +92,10 @@ RSpec.describe NxtErrorRegistry do
         let(:level_one) { test_class }
         let(:level_two) { test_class }
 
+        let(:registry) { NxtErrorRegistry::Registry.send(:new) }
+
         before do
+          allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
           level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.103'
         end
 

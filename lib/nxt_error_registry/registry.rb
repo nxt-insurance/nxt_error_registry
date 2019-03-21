@@ -1,23 +1,31 @@
-require 'singleton'
-
 module NxtErrorRegistry
   class Registry
-    STORE = {}
-    include Singleton
+    def self.instance
+      @instance ||= send(:new)
+    end
 
-    delegate_missing_to :STORE
-    delegate :to_s, :inspect, to: :STORE
+    # Usually we don't want this to be initialized other than through instance
+    private_class_method :new
+
+    def initialize
+      @store = { }
+    end
+
+    attr_reader :store
+
+    delegate_missing_to :store
+    delegate :to_s, :inspect, to: :store
 
     def flat
-      STORE.values.reduce({}, :merge)
+      values.map(&:values).flatten
     end
 
     def codes
-      flat.map { |_, entry| entry.fetch(:code) }
+      flat.map { |entry| entry.fetch(:code) }
     end
 
     def entries_by_codes
-      flat.inject({}) do |acc, (_, entry)|
+      flat.inject({}) do |acc, entry|
         code = entry.fetch(:code)
         (acc[code] ||= []) << entry
         acc

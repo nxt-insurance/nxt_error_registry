@@ -1,5 +1,5 @@
 RSpec.describe NxtErrorRegistry::Registry do
-  subject { described_class.instance }
+  subject { described_class.send(:new) }
 
   describe '#flat' do
     before do
@@ -8,7 +8,7 @@ RSpec.describe NxtErrorRegistry::Registry do
     end
 
     it 'returns merges all registries of all namespaces' do
-      expect(subject.flat).to eq(:LevelOneError=>{:code=>"100.100"}, :LevelTwoError=>{:code=>"100.101"})
+      expect(subject.flat).to match_array([{:code=>"100.100"}, {:code=>"100.101"}])
     end
   end
 

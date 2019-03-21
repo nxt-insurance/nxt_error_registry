@@ -2,6 +2,7 @@ require "active_support/all"
 require "nxt_error_registry/version"
 require "nxt_error_registry/registry"
 require "nxt_error_registry/default_code_validator"
+require "nxt_error_registry/codes_harness"
 
 module NxtErrorRegistry
   extend ActiveSupport::Concern
