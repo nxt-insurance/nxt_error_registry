@@ -4,7 +4,7 @@ module NxtErrorRegistry
       puts "WARNING: Codes are not in sequence: #{codes_not_in_sequence}" if codes_not_in_sequence.any?
 
       last_id = codes_as_ids.last
-      return '100.00' unless last_id
+      return '100.000' unless last_id
 
       next_id = last_id + 1
       id_to_code(next_id)
