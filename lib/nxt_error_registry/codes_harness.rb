@@ -1,5 +1,9 @@
+require 'singleton'
+
 module NxtErrorRegistry
   class CodesHarness
+    include Singleton
+
     def generate_code
       puts "WARNING: Codes are not in sequence: #{codes_not_in_sequence}" if codes_not_in_sequence.any?
 

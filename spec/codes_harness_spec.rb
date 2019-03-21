@@ -1,5 +1,5 @@
 RSpec.describe NxtErrorRegistry::CodesHarness do
-  subject { described_class.new }
+  subject { described_class.instance }
 
   def test_class
     Class.new do
@@ -50,7 +50,7 @@ RSpec.describe NxtErrorRegistry::CodesHarness do
 
   describe '#generate_code' do
     it 'generates the next code' do
-      expect(subject.generate_code).to eq('100.00')
+      expect(subject.generate_code).to eq('100.000')
       test_class.register_error :LevelOneError, type: BadError, code: '100.001'
       test_class.register_error :LevelOneError, type: BadError, code: '100.002'
       expect(subject.generate_code).to eq('100.003')
