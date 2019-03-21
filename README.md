@@ -24,6 +24,7 @@ Or install it yourself as:
 class LevelOne
   include NxtErrorRegistry
   register_error :LevelOneError, type: StandardError, code: '100.100'
+  # This will set the LevelOne::LevelOneError constant that you can raise anywhere
   
   def raise_level_one_error
     raise LevelOneError, 'There was an error on level'
