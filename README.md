@@ -24,7 +24,7 @@ Or install it yourself as:
 class LevelOne
   include NxtErrorRegistry
   register_error :LevelOneError, type: StandardError, code: '100.100'
-  # This will set the LevelOne::LevelOneError constant that you can raise anywhere
+  # This will set the LevelOne::LevelOneError constant that you can raise anywhere 
   
   def raise_level_one_error
     raise LevelOneError, 'There was an error on level'
@@ -33,6 +33,9 @@ class LevelOne
   end
 end
 ```
+
+`register_error` will make sure that the code was not already registered elsewhere in your app. 
+The codes have to be unique. You can also check if they are all in sequence with `NxtErrorRegistry::CodesHarness.instance.codes_not_in_sequence`
 
 ## Development
 
