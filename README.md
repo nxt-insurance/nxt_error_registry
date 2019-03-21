@@ -1,8 +1,6 @@
 # NxtErrorRegistry
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/nxt_error_registry`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Register all your errors in a sane way.
 
 ## Installation
 
@@ -22,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class LevelOne
+  include NxtErrorRegistry
+  register_error :LevelOneError, type: StandardError, code: '100.100'
+  
+  def raise_level_one_error
+    raise LevelOneError, 'There was an error on level'
+  rescue LevelOneError => e
+    puts e.code # would output '100.100' 
+  end
+end
+```
 
 ## Development
 
