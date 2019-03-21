@@ -5,8 +5,10 @@ RSpec.describe NxtErrorRegistry::CodesHarness do
     Class.new do
       include NxtErrorRegistry
     end
-
   end
+
+  BadError = Class.new(StandardError)
+
   describe '#codes_not_in_sequence' do
     let(:registry) { NxtErrorRegistry::Registry.send(:new) }
 
@@ -14,10 +16,10 @@ RSpec.describe NxtErrorRegistry::CodesHarness do
       before do
         allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
 
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.000'
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.003'
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.001'
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.002'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.000'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.003'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.001'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.002'
       end
 
       it 'returns an empty array' do
@@ -29,13 +31,13 @@ RSpec.describe NxtErrorRegistry::CodesHarness do
       before do
         allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
 
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.000'
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.003'
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.007'
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.009'
-        test_class.register_error :LevelOneError, type: StandardError, code: '200.009'
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.002'
-        test_class.register_error :LevelOneError, type: StandardError, code: '100.005'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.000'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.003'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.007'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.009'
+        test_class.register_error :LevelOneError, type: BadError, code: '200.009'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.002'
+        test_class.register_error :LevelOneError, type: BadError, code: '100.005'
       end
 
       it 'returns the tuples with a distance greater one' do
@@ -49,11 +51,11 @@ RSpec.describe NxtErrorRegistry::CodesHarness do
   describe '#generate_code' do
     it 'generates the next code' do
       expect(subject.generate_code).to eq('100.00')
-      test_class.register_error :LevelOneError, type: StandardError, code: '100.001'
-      test_class.register_error :LevelOneError, type: StandardError, code: '100.002'
+      test_class.register_error :LevelOneError, type: BadError, code: '100.001'
+      test_class.register_error :LevelOneError, type: BadError, code: '100.002'
       expect(subject.generate_code).to eq('100.003')
       expect(subject.generate_code).to eq('100.003')
-      test_class.register_error :LevelOneError, type: StandardError, code: '100.003'
+      test_class.register_error :LevelOneError, type: BadError, code: '100.003'
       expect(subject.generate_code).to eq('100.004')
     end
   end

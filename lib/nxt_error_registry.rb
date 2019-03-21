@@ -11,11 +11,14 @@ module NxtErrorRegistry
 
 
   module ClassMethods
-    def register_error(name, type:, code:, **opts)
+    def register_error(name, type:, code:, **opts, &block)
       raise_name_not_a_symbol_error(name) unless name.is_a?(Symbol)
       raise_registration_error(name) if const_defined?(name)
 
-      error_class = Class.new(type)
+      error_class = Class.new(type, &block)
+      error_class.define_singleton_method :code, -> { code }
+      error_class.define_singleton_method :options, -> { opts }
+
       const_set(name, error_class)
       entry = { code: code, error_class: error_class, type: type, name: name, namespace: self.to_s, opts: opts }
       error_registry[name.to_s] = entry

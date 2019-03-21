@@ -6,13 +6,27 @@ RSpec.describe NxtErrorRegistry do
   describe '.register_error' do
     module TestErrors
       class BadError < StandardError
-        TYPE = 123
       end
     end
 
     def test_class
       Class.new do
         include NxtErrorRegistry
+      end
+    end
+
+    context 'code' do
+      let(:level_one) { test_class }
+
+      let(:registry) { NxtErrorRegistry::Registry.send(:new) }
+
+      before do
+        allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
+      end
+
+      it 'registers a new error class with the :code method' do
+        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100'
+        expect(level_one::LevelOneError.code).to eq('100.100')
       end
     end
 
@@ -42,12 +56,12 @@ RSpec.describe NxtErrorRegistry do
         expect(
           NxtErrorRegistry::Registry.instance[level_two.to_s]['LevelTwoError']
         ).to eq(
-          :code=>"100.101",
-          :error_class=>level_two::LevelTwoError,
-          :name=>:LevelTwoError,
-          :namespace=>level_two.to_s,
-          :opts=>{},
-          :type=>TestErrors::BadError,
+          :code => "100.101",
+          :error_class => level_two::LevelTwoError,
+          :name => :LevelTwoError,
+          :namespace => level_two.to_s,
+          :opts => {},
+          :type => TestErrors::BadError,
         )
       end
     end
