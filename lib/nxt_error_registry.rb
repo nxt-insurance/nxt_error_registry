@@ -3,6 +3,7 @@ require "nxt_error_registry/version"
 require "nxt_error_registry/registry"
 require "nxt_error_registry/default_code_validator"
 require "nxt_error_registry/codes_harness"
+require 'railtie' if defined?(Rails)
 
 module NxtErrorRegistry
   extend ActiveSupport::Concern
