@@ -34,9 +34,25 @@ class LevelOne
 end
 ```
 
-`register_error` will make sure that the code was not already registered elsewhere in your app. 
-The codes have to be unique. You can also check if they are all in sequence with `NxtErrorRegistry::CodesHarness.instance.codes_not_in_sequence`
+`register_error` will make sure that the code was not already registered anywhere else in your app. 
 
+### Generate an register_error statement to include in your code with the rails generator
+
+All arguments are optional and will be set to a placeholder if not provided 
+
+```ruby
+rails g register_error --name NewErrorName --type SomeKindOfError 
+# => register_error :NewErrorName, type: SomeKindOfError, code: '100.000'
+``` 
+
+### Or use the rake task instead. 
+
+All arguments are optional and will be set to a placeholder if not provided
+
+```ruby
+rake nxt_error_registry:generate_code\[ErrorName,ParentType\] 
+# => register_error :ErrorName, type: ParentType, code: '100.000'
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
