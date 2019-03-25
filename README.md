@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ```ruby
 class LevelOne
-  include NxtErrorRegistry
+  extend NxtErrorRegistry
   register_error :LevelOneError, type: StandardError, code: '100.100'
   # This will set the LevelOne::LevelOneError constant that you can raise anywhere 
   
