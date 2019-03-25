@@ -11,7 +11,7 @@ RSpec.describe NxtErrorRegistry do
 
     def test_class
       Class.new do
-        include NxtErrorRegistry
+        extend NxtErrorRegistry
       end
     end
 

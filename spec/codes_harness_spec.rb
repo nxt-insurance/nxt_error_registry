@@ -3,7 +3,7 @@ RSpec.describe NxtErrorRegistry::CodesHarness do
 
   def test_class
     Class.new do
-      include NxtErrorRegistry
+      extend NxtErrorRegistry
     end
   end
 
