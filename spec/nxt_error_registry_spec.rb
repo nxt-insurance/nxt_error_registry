@@ -30,6 +30,26 @@ RSpec.describe NxtErrorRegistry do
       end
     end
 
+    context 'options' do
+      let(:level_one) { test_class }
+
+      let(:registry) { NxtErrorRegistry::Registry.send(:new) }
+
+      before do
+        allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
+        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100', capture: false
+      end
+
+      it 'sets the options on the class' do
+        expect(level_one::LevelOneError.options).to eq(capture: false)
+      end
+
+      it 'can be extended by the subclass' do
+        level_one.register_error :LevelTwoError, type: level_one::LevelOneError, code: '100.101', capture: true, reraise: true
+        expect(level_one::LevelTwoError.options).to eq(capture: true, reraise: true)
+      end
+    end
+
     context 'when there are no other errors registered' do
       let(:level_one) { test_class }
       let(:level_two) { test_class }

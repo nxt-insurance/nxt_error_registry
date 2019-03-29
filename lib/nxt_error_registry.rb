@@ -15,7 +15,11 @@ module NxtErrorRegistry
 
     error_class = Class.new(type, &block)
     error_class.define_singleton_method :code, -> { code }
-    error_class.define_singleton_method :options, -> { opts }
+    error_class.define_singleton_method :options do
+      # the superclass "type" may not have defined options yet
+      inherited_options = type.try(:options) || {}
+      inherited_options.merge(opts)
+    end
 
     const_set(name, error_class)
     entry = { code: code, error_class: error_class, type: type, name: name, namespace: self.to_s, opts: opts }

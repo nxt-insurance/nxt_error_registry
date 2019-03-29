@@ -24,12 +24,16 @@ Or install it yourself as:
 class LevelOne
   extend NxtErrorRegistry
   register_error :LevelOneError, type: StandardError, code: '100.100'
-  # This will set the LevelOne::LevelOneError constant that you can raise anywhere 
+  # This will set the LevelOne::LevelOneError constant that you can raise anywhere
+  register_error :LevelTwoError, type: LevelOneError, code: '100.101', capture: true, reraise: false
+  # You can also pass in additional options when registering your errors. These will be available on you error class 
   
   def raise_level_one_error
     raise LevelOneError, 'There was an error on level'
   rescue LevelOneError => e
-    puts e.code # would output '100.100' 
+    puts e.code # would output '100.100'
+  rescue LevelTwoError => e
+    puts e.options # { capture: true, reraise: false } 
   end
 end
 ```
