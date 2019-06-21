@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/nxt-insurance/nxt_error_registry.svg?style=svg)](https://circleci.com/gh/nxt-insurance/nxt_error_registry)
+
 # NxtErrorRegistry
 
 Register all your errors in a sane way.
