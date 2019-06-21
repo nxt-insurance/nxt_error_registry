@@ -67,7 +67,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/nxt_error_registry.
+Bug reports and pull requests are welcome on GitHub at https://github.com/nxt-insurance/nxt_error_registry.
 
 ## License
 
