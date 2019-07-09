@@ -5,7 +5,7 @@ namespace :nxt_error_registry do
     name = args.fetch(:name, 'ErrorName').camelcase
     type = args.fetch(:type, 'ParentClass').camelcase
 
-    harness = NxtErrorRegistry::CodesHarness.instance
+    harness = NxtErrorRegistry::CodeGenerators::Default.instance
     code = harness.generate_code
     puts '----------------------------------------------'
     puts "register_error :#{name}, type: #{type}, code: '#{code}'"

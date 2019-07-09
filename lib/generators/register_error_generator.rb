@@ -7,7 +7,7 @@ class RegisterErrorGenerator < Rails::Generators::Base
     Rails.application.eager_load!
     name = options['name'].camelcase
     type = options['type'].camelcase
-    harness = NxtErrorRegistry::CodesHarness.instance
+    harness = NxtErrorRegistry::CodeGenerators::Default.instance
     code = harness.generate_code
     puts '----------------------------------------------'
     puts "register_error :#{name}, type: #{type}, code: '#{code}'"

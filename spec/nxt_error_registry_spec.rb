@@ -100,7 +100,7 @@ RSpec.describe NxtErrorRegistry do
       it 'raises an error' do
         expect {
           level_two.register_error :LevelTwoError, type: TestErrors::BadError, code: '100.100'
-        }.to raise_error(NxtErrorRegistry::DefaultCodeValidator::CodeAlreadyTakenError, "The following codes are duplicated: 100.100")
+        }.to raise_error(NxtErrorRegistry::CodeValidators::Default::CodeAlreadyTakenError, "The following codes are duplicated: 100.100")
       end
     end
 

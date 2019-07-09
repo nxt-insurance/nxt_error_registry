@@ -1,13 +1,15 @@
 require "active_support/all"
 require "nxt_error_registry/version"
 require "nxt_error_registry/registry"
-require "nxt_error_registry/default_code_validator"
-require "nxt_error_registry/codes_harness"
+require "nxt_error_registry/code_generators"
+require "nxt_error_registry/code_generators/default"
+require "nxt_error_registry/code_validators"
+require "nxt_error_registry/code_validators/default"
 require 'railtie' if defined?(Rails)
 
 module NxtErrorRegistry
   RegistrationError = Class.new(StandardError)
-  CodeValidator = DefaultCodeValidator
+  CodeValidator = CodeValidators::Default
 
   def register_error(name, type:, code:, **opts, &block)
     raise_name_not_a_symbol_error(name) unless name.is_a?(Symbol)

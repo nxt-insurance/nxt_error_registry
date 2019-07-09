@@ -1,4 +1,4 @@
-RSpec.describe NxtErrorRegistry::CodesHarness do
+RSpec.describe NxtErrorRegistry::CodeGenerators::Default do
   subject { described_class.instance }
 
   def test_class
