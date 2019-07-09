@@ -4,7 +4,13 @@ module NxtErrorRegistry
       CodeAlreadyTakenError = Class.new(StandardError)
       InvalidCodeFormatError = Class.new(StandardError)
 
-      FORMAT = /\A\d{3}\.\d{3}\z/
+      def self.code_format=(format)
+        @format = format
+      end
+
+      def self.code_format
+        @format || (raise ArgumentError, "Format never was set")
+      end
 
       def initialize(name, type, code, context)
         @name = name
@@ -25,7 +31,7 @@ module NxtErrorRegistry
       attr_reader :name, :type, :code, :context
 
       def validate_code_format
-        return if code =~ FORMAT
+        return if code =~ self.class.code_format
         raise InvalidCodeFormatError, "Code #{code} for name #{name} violates format #{FORMAT} in context: #{context}"
       end
 

@@ -5,7 +5,7 @@ module NxtErrorRegistry
     class Default
       include Singleton
 
-      def generate_code
+      def generate_code(*_args)
         puts "WARNING: Codes are not in sequence: #{codes_not_in_sequence}" if codes_not_in_sequence.any?
 
         last_id = codes_as_ids.last

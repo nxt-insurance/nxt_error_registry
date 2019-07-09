@@ -10,6 +10,7 @@ require 'railtie' if defined?(Rails)
 module NxtErrorRegistry
   RegistrationError = Class.new(StandardError)
   CodeValidator = CodeValidators::Default
+  CodeValidator.code_format = /\A\d{3}\.\d{3}\z/
 
   def register_error(name, type:, code:, **opts, &block)
     raise_name_not_a_symbol_error(name) unless name.is_a?(Symbol)
