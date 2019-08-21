@@ -4,7 +4,7 @@ class RegisterErrorGenerator < Rails::Generators::Base
   class_option :type, type: :string, default: 'ParentClass'
 
   def register_error
-    Rails.application.eager_load!
+    Zeitwerk::Loader.eager_load_all
     name = options['name'].camelcase
     type = options['type'].camelcase
     harness = NxtErrorRegistry::CodesHarness.instance

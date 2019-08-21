@@ -1,7 +1,7 @@
 namespace :nxt_error_registry do
   desc 'Generate a unique error code'
   task :generate_code, [:name, :type] => [:environment] do |_, args|
-    Rails.application.eager_load!
+    Zeitwerk::Loader.eager_load_all
     name = args.fetch(:name, 'ErrorName').camelcase
     type = args.fetch(:type, 'ParentClass').camelcase
 
