@@ -28,6 +28,12 @@ RSpec.describe NxtErrorRegistry do
         level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100'
         expect(level_one::LevelOneError.code).to eq('100.100')
       end
+
+      it 'defines the instance method too' do
+        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100'
+        instance = level_one::LevelOneError.new('Error!')
+        expect(instance.code).to eq('100.100')
+      end
     end
 
     context 'options' do
