@@ -20,6 +20,7 @@ module NxtErrorRegistry
       inherited_options = type.try(:options) || {}
       inherited_options.merge(opts)
     end
+    error_class.delegate :code, to: :class
 
     const_set(name, error_class)
     entry = { code: code, error_class: error_class, type: type, name: name, namespace: self.to_s, opts: opts }
