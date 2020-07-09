@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nxt_error_registry (0.1.5)
+    nxt_error_registry (0.1.6)
       activesupport (< 6.1)
       rails (< 6.1)
 
@@ -86,7 +86,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     nio4r (2.5.2)
-    nokogiri (1.10.9)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     pry (0.13.1)
       coderay (~> 1.1)
