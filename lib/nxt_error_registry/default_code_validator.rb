@@ -29,7 +29,7 @@ module NxtErrorRegistry
     end
 
     def validate_code_uniqueness
-      duplicates = registry.duplicate_codes
+      duplicates = registry.duplicated_codes
       return if duplicates.empty?
 
       raise CodeAlreadyTakenError, "The following codes are duplicated: #{duplicates.keys.join(',')}"

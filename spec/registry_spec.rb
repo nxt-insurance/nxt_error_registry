@@ -31,7 +31,7 @@ RSpec.describe NxtErrorRegistry::Registry do
     end
 
     it 'returns the entries that have the same code' do
-      expect(subject.duplicate_codes).to eq("100.101"=>[{:code=>"100.101"}, {:code=>"100.101"}])
+      expect(subject.duplicated_codes).to eq("100.101"=>[{:code=>"100.101"}, {:code=>"100.101"}])
     end
   end
 end
