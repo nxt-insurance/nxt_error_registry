@@ -25,9 +25,9 @@ Or install it yourself as:
 ```ruby
 class LevelOne
   extend NxtErrorRegistry
-  register_error :LevelOneError, type: StandardError, code: '100.100'
+  register_error :LevelOneError, type: StandardError, code: 'r0b.1b0'
   # This will set the LevelOne::LevelOneError constant that you can raise anywhere
-  register_error :LevelTwoError, type: LevelOneError, code: '100.101', capture: true, reraise: false
+  register_error :LevelTwoError, type: LevelOneError, code: 'ah6.1h1', capture: true, reraise: false
   # You can also pass in additional options when registering your errors. These will be available on you error class 
   
   def raise_level_one_error
@@ -48,7 +48,7 @@ All arguments are optional and will be set to a placeholder if not provided
 
 ```ruby
 rails g register_error --name NewErrorName --type SomeKindOfError 
-# => register_error :NewErrorName, type: SomeKindOfError, code: '100.000'
+# => register_error :NewErrorName, type: SomeKindOfError, code: '45h.74g'
 ``` 
 
 ### Or use the rake task instead. 
@@ -57,7 +57,7 @@ All arguments are optional and will be set to a placeholder if not provided
 
 ```ruby
 rake nxt_error_registry:generate_code\[ErrorName,ParentType\] 
-# => register_error :ErrorName, type: ParentType, code: '100.000'
+# => register_error :ErrorName, type: ParentType, code: 'r5h.h00'
 ```
 ## Development
 

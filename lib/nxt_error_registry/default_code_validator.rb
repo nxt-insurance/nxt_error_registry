@@ -3,7 +3,7 @@ module NxtErrorRegistry
     CodeAlreadyTakenError = Class.new(StandardError)
     InvalidCodeFormatError = Class.new(StandardError)
 
-    FORMAT = /\A\d{3}\.\d{3}\z/
+    FORMAT = /\A[a-zA-Z0-9]{3}\.[a-zA-Z0-9]{3}\z/
 
     def initialize(name, type, code, context)
       @name = name
@@ -25,6 +25,7 @@ module NxtErrorRegistry
 
     def validate_code_format
       return if code =~ FORMAT
+
       raise InvalidCodeFormatError, "Code #{code} for name #{name} violates format #{FORMAT} in context: #{context}"
     end
 

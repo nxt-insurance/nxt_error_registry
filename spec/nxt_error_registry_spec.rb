@@ -25,14 +25,14 @@ RSpec.describe NxtErrorRegistry do
       end
 
       it 'registers a new error class with the :code method' do
-        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100'
-        expect(level_one::LevelOneError.code).to eq('100.100')
+        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.abc'
+        expect(level_one::LevelOneError.code).to eq('100.abc')
       end
 
       it 'defines the instance method too' do
-        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100'
+        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.abc'
         instance = level_one::LevelOneError.new('Error!')
-        expect(instance.code).to eq('100.100')
+        expect(instance.code).to eq('100.abc')
       end
     end
 
@@ -100,13 +100,13 @@ RSpec.describe NxtErrorRegistry do
 
       before do
         allow(NxtErrorRegistry::Registry).to receive(:instance).and_return(registry)
-        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.100'
+        level_one.register_error :LevelOneError, type: TestErrors::BadError, code: '100.abc'
       end
 
       it 'raises an error' do
         expect {
-          level_two.register_error :LevelTwoError, type: TestErrors::BadError, code: '100.100'
-        }.to raise_error(NxtErrorRegistry::DefaultCodeValidator::CodeAlreadyTakenError, "The following codes are duplicated: 100.100")
+          level_two.register_error :LevelTwoError, type: TestErrors::BadError, code: '100.abc'
+        }.to raise_error(NxtErrorRegistry::DefaultCodeValidator::CodeAlreadyTakenError, "The following codes are duplicated: 100.abc")
       end
     end
 
