@@ -12,8 +12,7 @@ module NxtErrorRegistry
     end
 
     def generate_next_code
-      chars = SecureRandom.hex(4).chars
-      new_code = "#{chars[0..2].join}.#{chars[3..-1].join}"
+      new_code = SecureRandom.uuid
       return new_code unless registered_codes.include?(new_code)
 
       raise CodeAlreadyRegistered, "#{new_code} already registered"
