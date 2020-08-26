@@ -32,7 +32,7 @@ module NxtErrorRegistry
       end
     end
 
-    def duplicate_codes
+    def duplicated_codes
       entries_by_codes.select { |_, v| v.size > 1 }
     end
   end

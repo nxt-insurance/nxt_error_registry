@@ -3,7 +3,7 @@ module NxtErrorRegistry
     CodeAlreadyTakenError = Class.new(StandardError)
     InvalidCodeFormatError = Class.new(StandardError)
 
-    FORMAT = /\A\d{3}\.\d{3}\z/
+    FORMAT = /\A[a-zA-Z0-9-]{36}\z/
 
     def initialize(name, type, code, context)
       @name = name
@@ -25,11 +25,12 @@ module NxtErrorRegistry
 
     def validate_code_format
       return if code =~ FORMAT
+
       raise InvalidCodeFormatError, "Code #{code} for name #{name} violates format #{FORMAT} in context: #{context}"
     end
 
     def validate_code_uniqueness
-      duplicates = registry.duplicate_codes
+      duplicates = registry.duplicated_codes
       return if duplicates.empty?
 
       raise CodeAlreadyTakenError, "The following codes are duplicated: #{duplicates.keys.join(',')}"
