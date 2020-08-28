@@ -153,7 +153,7 @@ RSpec.describe NxtErrorRegistry do
         it do
           expect { level_one.register_error :ValidCode, type: TestErrors::BadError, code: '04ac98bd-a89e-4e4a-8448-7197dbd76623' }.to_not raise_error
           expect { level_one.register_error :ValidLegacyCode, type: TestErrors::BadError, code: '123.456' }.to_not raise_error
-          expect { level_one.register_error :NotValid, type: TestErrors::BadError, code: 'other' }.to raise_error(NxtErrorRegistry::DefaultCodeValidator::InvalidCodeFormatError)
+          expect { level_one.register_error :NotValid, type: TestErrors::BadError, code: '123.456.789' }.to raise_error(NxtErrorRegistry::DefaultCodeValidator::InvalidCodeFormatError)
         end
       end
     end
