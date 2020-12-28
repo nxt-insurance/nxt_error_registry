@@ -1,3 +1,11 @@
+# v0.2.2 2020-12-28
+
+### Changed
+ 
+- Updated dependencies
+
+[Compare v0.2.1...v0.2.2](https://github.com/nxt-insurance/nxt_error_registry/compare/v0.2.1...v0.2.2)
+
 # v0.2.1 2020-08-28
 
 ### Fixed
