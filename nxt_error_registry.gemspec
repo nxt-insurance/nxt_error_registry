@@ -8,8 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Andreas Robecke", "Nils Sommer", "Raphael Kallensee"]
   spec.email         = ["a.robecke@getsafe.de"]
 
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.summary       = %q{Registry to register errors with unique codes and more.}
   spec.homepage      = "https://github.com/nxt-insurance"
   spec.license       = "MIT"
 
@@ -20,6 +19,7 @@ Gem::Specification.new do |spec|
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = "https://github.com/nxt-insurance/nxt_error_registry"
+    spec.metadata["changelog_uri"] = "https://github.com/nxt-insurance/nxt_error_registry/CHANGELOG.md"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
