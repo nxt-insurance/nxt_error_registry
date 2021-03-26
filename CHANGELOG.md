@@ -1,3 +1,9 @@
+# v0.2.4 2021-03-26
+
+### Updated
+
+- Switched Rails dependency to railties
+
 # v0.2.3 2021-01-05
 
 ### Updated
