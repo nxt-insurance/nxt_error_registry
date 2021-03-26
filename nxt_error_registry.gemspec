@@ -5,7 +5,7 @@ require "nxt_error_registry/version"
 Gem::Specification.new do |spec|
   spec.name          = "nxt_error_registry"
   spec.version       = NxtErrorRegistry::VERSION
-  spec.authors       = ["Andreas Robecke", "Nils Sommer", "Raphael Kallensee"]
+  spec.authors       = ["Andreas Robecke", "Nils Sommer", "Raphael Kallensee", "Akihiko Ito"]
   spec.email         = ["a.robecke@getsafe.de"]
 
   spec.summary       = %q{Registry to register errors with unique codes and more.}
