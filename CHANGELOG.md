@@ -1,3 +1,9 @@
+# v0.2.5 2022-01-27
+
+### Updated
+
+- Relax dependencies to Railties and ActiveSupport to allow Rails 7.x
+
 # v0.2.4 2021-03-26
 
 ### Updated
