@@ -1,3 +1,3 @@
 module NxtErrorRegistry
-  VERSION = '0.2.6'.freeze
+  VERSION = '0.3.0'.freeze
 end
