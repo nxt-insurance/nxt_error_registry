@@ -25,10 +25,12 @@ Or install it yourself as:
 ```ruby
 class LevelOne
   extend NxtErrorRegistry
-  register_error :LevelOneError, type: StandardError, code: '84b67c94-efb4-48e8-a5e9-ed1fa1beb988'
+  
   # This will set the LevelOne::LevelOneError constant that you can raise anywhere
-  register_error :LevelTwoError, type: LevelOneError, code: 'a7fc9a8c-9f83-4a2d-8808-75dbef8e376f', capture: true, reraise: false
+  register_error :LevelOneError, type: StandardError, code: '84b67c94-efb4-48e8-a5e9-ed1fa1beb988'
+  
   # You can also pass in additional options when registering your errors. These will be available on you error class 
+  register_error :LevelTwoError, type: LevelOneError, code: 'a7fc9a8c-9f83-4a2d-8808-75dbef8e376f', capture: true, reraise: false
   
   def raise_level_one_error
     raise LevelOneError, 'There was an error on level'
