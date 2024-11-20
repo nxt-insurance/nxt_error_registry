@@ -1,3 +1,10 @@
+# v0.2.6 2024-11-20
+
+### Updated
+
+- Relax dependencies to Railties and ActiveSupport to allow Rails 8.x
+- Bump Ruby to 3.3.6
+
 # v0.2.5 2022-01-27
 
 ### Updated
