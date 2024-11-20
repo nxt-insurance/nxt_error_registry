@@ -8,7 +8,7 @@ module NxtErrorRegistry
     private_class_method :new
 
     def initialize
-      @store = { }
+      @store = {}
     end
 
     attr_reader :store
@@ -25,10 +25,9 @@ module NxtErrorRegistry
     end
 
     def entries_by_codes
-      flat.inject({}) do |acc, entry|
+      flat.each_with_object({}) do |entry, acc|
         code = entry.fetch(:code)
         (acc[code] ||= []) << entry
-        acc
       end
     end
 

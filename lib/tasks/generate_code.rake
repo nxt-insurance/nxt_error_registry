@@ -1,6 +1,6 @@
 namespace :nxt_error_registry do
   desc 'Generate a unique error code'
-  task :generate_code, [:name, :type] => [:environment] do |_, args|
+  task :generate_code, %i[name type] => [:environment] do |_, args|
     Zeitwerk::Loader.eager_load_all
     name = args.fetch(:name, 'ErrorName').camelcase
     type = args.fetch(:type, 'ParentClass').camelcase
@@ -12,4 +12,3 @@ namespace :nxt_error_registry do
     puts '----------------------------------------------'
   end
 end
-

@@ -1,8 +1,8 @@
-require "active_support/all"
-require "nxt_error_registry/version"
-require "nxt_error_registry/registry"
-require "nxt_error_registry/default_code_validator"
-require "nxt_error_registry/codes_harness"
+require 'active_support/all'
+require 'nxt_error_registry/version'
+require 'nxt_error_registry/registry'
+require 'nxt_error_registry/default_code_validator'
+require 'nxt_error_registry/codes_harness'
 require 'railtie' if defined?(Rails)
 
 module NxtErrorRegistry
@@ -41,7 +41,7 @@ module NxtErrorRegistry
 
   def error_registry
     @error_registry ||= begin
-      ::NxtErrorRegistry::Registry.instance[self.to_s] ||= { }
+      ::NxtErrorRegistry::Registry.instance[self.to_s] ||= {}
       ::NxtErrorRegistry::Registry.instance[self.to_s]
     end
   end
