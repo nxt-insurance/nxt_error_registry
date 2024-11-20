@@ -1,10 +1,10 @@
 RSpec.describe NxtErrorRegistry do
-  it "has a version number" do
+  it 'has a version number' do
     expect(NxtErrorRegistry::VERSION).not_to be nil
   end
 
   describe '.register_error' do
-    module TestErrors
+    module TestErrors # rubocop:disable Lint/ConstantDefinitionInBlock
       class BadError < StandardError
       end
     end
@@ -82,12 +82,12 @@ RSpec.describe NxtErrorRegistry do
         expect(
           NxtErrorRegistry::Registry.instance[level_two.to_s]['LevelTwoError']
         ).to eq(
-          :code => "bddf958e-0e74-4729-b63f-1367a2103e53",
-          :error_class => level_two::LevelTwoError,
-          :name => :LevelTwoError,
-          :namespace => level_two.to_s,
-          :opts => {},
-          :type => TestErrors::BadError,
+          code: 'bddf958e-0e74-4729-b63f-1367a2103e53',
+          error_class: level_two::LevelTwoError,
+          name: :LevelTwoError,
+          namespace: level_two.to_s,
+          opts: {},
+          type: TestErrors::BadError
         )
       end
     end

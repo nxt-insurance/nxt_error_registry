@@ -8,7 +8,7 @@ RSpec.describe NxtErrorRegistry::Registry do
     end
 
     it 'returns merges all registries of all namespaces' do
-      expect(subject.flat).to match_array([{:code=>"100.100"}, {:code=>"100.101"}])
+      expect(subject.flat).to match_array([{ code: '100.100' }, { code: '100.101' }])
     end
   end
 
@@ -19,7 +19,7 @@ RSpec.describe NxtErrorRegistry::Registry do
     end
 
     it 'returns a flat with codes as keys' do
-      expect(subject.entries_by_codes).to eq("100.100"=>[{:code=>"100.100"}], "100.101"=>[{:code=>"100.101"}])
+      expect(subject.entries_by_codes).to eq('100.100' => [{ code: '100.100' }], '100.101' => [{ code: '100.101' }])
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe NxtErrorRegistry::Registry do
     end
 
     it 'returns the entries that have the same code' do
-      expect(subject.duplicated_codes).to eq("100.101"=>[{:code=>"100.101"}, {:code=>"100.101"}])
+      expect(subject.duplicated_codes).to eq('100.101' => [{ code: '100.101' }, { code: '100.101' }])
     end
   end
 end

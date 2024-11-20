@@ -1,55 +1,43 @@
-version: 2
+# See https://circleci.com/docs/2.0/language-ruby/ for more details
+
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@2.0.0
 
 jobs:
-  build:
-    working_directory: /home/circleci/app
+  rubocop:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: "cimg/ruby:3.2.2"
+    resource_class: small
     environment:
-      RACK_ENV: test
-      RAILS_ENV: test
-      COVERAGE: true
-      # CC_TEST_REPORTER_ID: YOUR_REPO_CC_TEST_REPORTER_ID # ENV var set in CircleCI user interface
+      BUNDLE_JOBS: "3"
+      BUNDLE_RETRY: "3"
     steps:
       - checkout
-      # libpq-dev: required for compiling the `pg` gem
-      # nodejs: required for asset compilation (see https://github.com/rails/execjs)
-      - run:
-          name: Install apt dependencies
-          command: |
-            sudo apt update -q \
-            && sudo apt upgrade -q
-      - restore_cache:
-          key: v3-bundler-{{ checksum "Gemfile.lock" }}-{{ arch }}
-      - run: gem install bundler
-      - run: bundle config build.nokogiri --use-system-libraries
-      - run: bundle install --without staging:production --path=vendor/bundle --jobs=4 --retry=3
-      - save_cache:
-          key: v3-bundler-{{ checksum "Gemfile.lock" }}-{{ arch }}
-          paths:
-            - vendor/bundle
-      - run:
-          name: Collect and filter specs
-          command: |
-            mkdir -p tmp/circleci
-            circleci tests glob "spec/**/*_spec.rb" > tmp/circleci/all_tests.txt
-            circleci tests split --split-by=timings < tmp/circleci/all_tests.txt > tmp/circleci/tests_to_run.txt
-            echo "These specs will be run:"
-            cat tmp/circleci/tests_to_run.txt
-      - run:
-          name: Parallel RSpec
-          command: |
-            bundle exec rspec \
-              --color \
-              --format progress \
-              --require spec_helper \
-              --format RspecJunitFormatter --out /tmp/rspec/junit.xml \
-              $(cat tmp/circleci/tests_to_run.txt)
-      # actually not necessary for test results to be collected, but these files
-      # won't show up in the web UI otherwise
-      - store_artifacts:
-          path: /tmp/rspec/
-          destination: rspec
+      - ruby/install-deps:
+          key: gems-v1
+          include-branch-in-cache-key: false
+      - run: bundle exec rubocop
 
-      - store_test_results:
-          path: /tmp/rspec/
+  rspec:
+    parallelism: 1
+    resource_class: small
+    docker:
+      - image: cimg/ruby:3.3.3
+    steps:
+      - checkout
+      - ruby/install-deps:
+          include-branch-in-cache-key: false
+      - run:
+          name: RSpec Tests
+          command: |-
+            bundle exec rspec --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec/results.xml --format progress
+
+workflows:
+  version: 2
+  checks:
+    jobs:
+      - rubocop
+      - rspec
