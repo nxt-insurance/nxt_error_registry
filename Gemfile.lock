@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    nxt_error_registry (0.2.5)
-      activesupport (< 8.0)
-      railties (< 8.0)
+    nxt_error_registry (0.2.6)
+      activesupport (< 9.0)
+      railties (< 9.0)
 
 GEM
   remote: https://rubygems.org/

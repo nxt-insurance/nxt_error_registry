@@ -8,7 +8,7 @@ orbs:
 jobs:
   rubocop:
     docker:
-      - image: "cimg/ruby:3.2.2"
+      - image: "cimg/ruby:3.3.6"
     resource_class: small
     environment:
       BUNDLE_JOBS: "3"

@@ -43,6 +43,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rspec_junit_formatter', '~> 0.5.1'
 
-  spec.add_dependency 'activesupport', '< 8.0'
-  spec.add_dependency 'railties', '< 8.0'
+  spec.add_dependency 'activesupport', '< 9.0'
+  spec.add_dependency 'railties', '< 9.0'
 end
