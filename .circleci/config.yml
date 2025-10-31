@@ -8,7 +8,7 @@ orbs:
 jobs:
   rubocop:
     docker:
-      - image: "cimg/ruby:3.3.6"
+      - image: "cimg/ruby:3.3.10"
     resource_class: small
     environment:
       BUNDLE_JOBS: "3"
@@ -24,7 +24,7 @@ jobs:
     parallelism: 1
     resource_class: small
     docker:
-      - image: cimg/ruby:3.3.3
+      - image: cimg/ruby:3.3.10
     steps:
       - checkout
       - ruby/install-deps:
