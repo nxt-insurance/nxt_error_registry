@@ -15,6 +15,7 @@ jobs:
       BUNDLE_RETRY: "3"
     steps:
       - checkout
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ca-certificates
       - ruby/install-deps:
           key: gems-v1
           include-branch-in-cache-key: false
@@ -27,6 +28,7 @@ jobs:
       - image: cimg/ruby:3.3.3
     steps:
       - checkout
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ca-certificates
       - ruby/install-deps:
           include-branch-in-cache-key: false
       - run:
